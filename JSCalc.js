@@ -16,10 +16,9 @@ class Calculator extends React.Component {
 
   handleDeci(e) {
     var last = ""
-    !isNaN(+this.state.lastVal) ? last=e.target.value : last="0"+e.target.value
+    !isNaN(+this.state.lastVal) ? last=this.state.lastVal+e.target.value : last="0"+e.target.value
 
- this.setState({lastVal: last,
-           formula: this.state.formula+last   })
+ this.setState({lastVal: last})
     }
 
   handleClear() {
@@ -36,30 +35,36 @@ class Calculator extends React.Component {
   }
 
   handleOper(e) {
-   if (oper.includes(lastVal)) {
-     this.setState({
-       lastVal: e.target.value
-     })
-   }
-    else {
-      this.setState({
-        formula: this.state.formula+this.state.lastVal,
-        lastVal: e.target.value,
-
-      }
-
-             )}
-
-   evalFormula()
+    console.log("OPER")
+    oper=['+','-','x'];
+    this.setState({
+      formula: this.state.formula + this.state.lastVal + e.target.value,
+      lastVal: ""
+    })
+   // if (oper.includes(this.state.lastVal)) {
+   //   this.setState({
+   //     lastVal: e.target.value
+   //   })
+   // }
+   //  else {
+   //    this.setState({
+   //      formula: this.state.formula+e.target.value,
+   //      lastVal: e.target.value,
+   //
+   //    }
+   //
+   //           )}
+}
+   evalFormula(){
   }
 
   evalFormula() {
     this.setState({/*TODO*/})
   }
 handleNum(e) {
+  console.log("NUM")
   this.setState({
     lastVal: this.state.lastVal + e.target.value,
-    lastOper: ""
   })
 }
   render() {
@@ -78,6 +83,7 @@ handleNum(e) {
     );
   }
 }
+
 class EntryScreen extends React.Component {
   constructor(props) {
     super(props);
