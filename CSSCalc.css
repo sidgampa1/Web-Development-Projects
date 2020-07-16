@@ -22,10 +22,6 @@ body {
 
 button {
   position: relative;
-  /* border: none; */
-  border-color: #0000ff;
-  border-width: 1px;
-  /* outline-style: solid; */
   width: 50px;
   height:40px;
 }
@@ -59,7 +55,7 @@ button:hover {
 }
 
 #equals {
-  background-color: #840ca1;
+  background-color: #00FFFF;
 }
 
 .oper {
