@@ -35,6 +35,7 @@ button:hover {
   height: 25px;
   background-color: black;
   color: red;
+  /*word-wrap: break-word;*/
 }
 
 .wide {

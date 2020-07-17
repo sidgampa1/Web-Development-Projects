@@ -1,10 +1,12 @@
+var operators = ["+", "-", "/", "*"];
+
 class Calculator extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      formula: "",
-      result: "",
-      lastVal: "",
+      formula: "0",
+      result: "0",
+      lastVal: "0",
       currNum: "",
     };
     this.handleDeci= this.handleDeci.bind(this);
@@ -33,6 +35,7 @@ class Calculator extends React.Component {
         formula: "0",
         result: "",
         lastVal: "0",
+        currNum: ""
       })
     }
 
@@ -46,7 +49,7 @@ class Calculator extends React.Component {
       }
 
       handleOper(e) {
-        console.log(e.target.value)
+      //  alert(e.target.value)
          //remove previous entry if it is also an operator
      var form=this.state.formula
      var hasOper=operators.includes(this.state.lastVal)
@@ -62,13 +65,16 @@ class Calculator extends React.Component {
              )}
 
              handleNum(e) {
+               var form=this.state.formula
+               if (form==0) {
+                 form=""
+               }
                this.setState({
-                 formula: this.state.formula + e.target.value,
+                 formula: form + e.target.value,
                  lastOper: "",
                  lastVal:e.target.value,
                  currNum: this.state.currNum+e.target.value
                })
-               console.log("NUM "+this.state.currNum)
              }
 
              render() {
