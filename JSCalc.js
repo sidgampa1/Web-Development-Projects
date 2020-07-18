@@ -1,5 +1,5 @@
 var operators = ["+", "-", "/", "*"];
-var maxLength=25;
+var maxLength=15;
 
 class Calculator extends React.Component {
   constructor(props) {
@@ -45,7 +45,6 @@ class Calculator extends React.Component {
         var result=eval(this.state.formula)
         this.setState({
           lastVal: result,
-          formula: result,
           currNum: result,
           replaceNum: true
         })
@@ -71,6 +70,8 @@ class Calculator extends React.Component {
              handleNum(e) {
                var form=this.state.formula
                var newNum=this.state.currNum
+               var newVal=e.target.value
+               var error=e.target.value
                if (form==0) {
                  form="" //replace 0 with current entry
                }
@@ -78,13 +79,19 @@ class Calculator extends React.Component {
                  form="" //making new formula after hitting equals
                  newNum=""
                }
+               if (form.length==maxLength) {
+                 newVal=""
+                 error="Formula is too long (hit = or AC)"
+               }
                this.setState({
-                 formula: form + e.target.value,
-                 lastVal:e.target.value,
-                 currNum: newNum+e.target.value,
+                 formula: form + newVal,
+                 lastVal:error,
+                 currNum: newNum+newVal,
                  replaceNum: false
                })
+               checkLength()
              }
+
 
              render() {
                  return (
