@@ -1,4 +1,5 @@
 var operators = ["+", "-", "/", "*"];
+var maxLength=25;
 
 class Calculator extends React.Component {
   constructor(props) {
@@ -6,8 +7,9 @@ class Calculator extends React.Component {
     this.state = {
       formula: "0",
       result: "0",
-      lastVal: "0",
+      lastVal: "",
       currNum: "",
+      replaceNum: false
     };
     this.handleDeci= this.handleDeci.bind(this);
     this.handleClear = this.handleClear.bind(this);
@@ -34,7 +36,7 @@ class Calculator extends React.Component {
       this.setState({
         formula: "0",
         result: "",
-        lastVal: "0",
+        lastVal: "",
         currNum: ""
       })
     }
@@ -44,7 +46,8 @@ class Calculator extends React.Component {
         this.setState({
           lastVal: result,
           formula: result,
-          currNum: result
+          currNum: result,
+          replaceNum: true
         })
       }
 
@@ -59,29 +62,35 @@ class Calculator extends React.Component {
        this.setState({
             formula: form+e.target.value,
             lastVal: e.target.value,
-            currNum:""
+            currNum:"",
+            replaceNum: false
          }
 
              )}
 
              handleNum(e) {
                var form=this.state.formula
+               var newNum=this.state.currNum
                if (form==0) {
-                 form=""
+                 form="" //replace 0 with current entry
+               }
+               if (this.state.replaceNum) {
+                 form="" //making new formula after hitting equals
+                 newNum=""
                }
                this.setState({
                  formula: form + e.target.value,
-                 lastOper: "",
                  lastVal:e.target.value,
-                 currNum: this.state.currNum+e.target.value
+                 currNum: newNum+e.target.value,
+                 replaceNum: false
                })
              }
 
              render() {
                  return (
                    <div>
-                     <FormulaScreen formula={this.state.formula} />
-                     <EntryScreen lastVal={this.state.lastVal} />
+                   <EntryScreen formula={this.state.formula} />
+                   <FormulaScreen lastVal={this.state.lastVal} />
                    <Buttons
                      equals={this.handleEquals}
                      oper={this.handleOper}
@@ -101,7 +110,7 @@ class EntryScreen extends React.Component {
 
   render() {
                  return (
-                       <div id='entry' className='row'>{this.props.lastVal}</div>
+                       <div id='entry' className='row'>{this.props.formula}</div>
                  )
                }
              }
@@ -113,7 +122,7 @@ class EntryScreen extends React.Component {
 
                render() {
                  return (
-                   <div id='formula' className='row'>{this.props.formula}</div>
+                   <div id='formula' className='row'>{this.props.lastVal}</div>
                  )
                }
              }
