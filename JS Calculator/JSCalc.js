@@ -32,7 +32,7 @@ class Calculator extends React.Component {
                currNum: this.state.currNum+last})
     }
 
-    handleClear() {
+  handleClear() {
       this.setState({
         formula: "0",
         result: "",
@@ -41,7 +41,7 @@ class Calculator extends React.Component {
       })
     }
 
-    handleEquals() {
+  handleEquals() {
         var result=eval(this.state.formula)
         this.setState({
           lastVal: result,
@@ -50,7 +50,7 @@ class Calculator extends React.Component {
         })
       }
 
-      handleOper(e) {
+  handleOper(e) {
       //  alert(e.target.value)
          //remove previous entry if it is also an operator
      var form=this.state.formula
@@ -67,7 +67,7 @@ class Calculator extends React.Component {
 
              )}
 
-             handleNum(e) {
+  handleNum(e) {
                var form=this.state.formula
                var newNum=this.state.currNum
                var newVal=e.target.value
@@ -92,8 +92,7 @@ class Calculator extends React.Component {
                checkLength()
              }
 
-
-             render() {
+  render() {
                  return (
                    <div>
                    <EntryScreen formula={this.state.formula} />
@@ -122,7 +121,7 @@ class EntryScreen extends React.Component {
                }
              }
 
-             class FormulaScreen extends React.Component {
+class FormulaScreen extends React.Component {
                constructor(props) {
                  super(props);
                }
@@ -134,7 +133,7 @@ class EntryScreen extends React.Component {
                }
              }
 
-             class Buttons extends React.Component {
+class Buttons extends React.Component {
                constructor(props) {
                  super(props);
                }

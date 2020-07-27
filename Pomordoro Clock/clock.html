@@ -1,10 +1,19 @@
+<!DOCTYPE html>
 <html lang="en" dir="ltr">
-  <head>
+<head>
     <meta charset="utf-8">
-      <link rel="stylesheet" type="text/css" href="clock.css">
-      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    </head>
-  <body>
+    <title></title>
+    <link rel="stylesheet" type="text/css" href="clock.css">
+    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.4.2/react.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.4.2/react-dom.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.21.1/babel.min.js"></script>
+    <script type="text/babel" src="Clock.js"></script>
+  </head>
+    <body>
+      <div id="base"></div>
+      <!--
+  Showing this in React DOM instead
     <div id="title"> Pomodoro Clock </div>
     <div id="params">
       <div id="break"> Break Length
@@ -27,7 +36,6 @@
       <button class="fa fa-play"></button>
       <button class="fa fa-pause"></button>
       <button class="fa fa-refresh"></button>
-      </div>
-
-  </body>
+      </div> -->
+      </body>
   </html>
