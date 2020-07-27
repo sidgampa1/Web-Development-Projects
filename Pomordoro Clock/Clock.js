@@ -13,25 +13,25 @@ class Clock extends React.Component {
       <div> <div id="title"> Pomodoro Clock </div>
       <div id="params">
         <div id="break"> Break Length
-          <div class="input">
-            <button class="fa fa-arrow-up"></button> 5
-            <button class="fa fa-arrow-down"></button>
+          <div className="input">
+            <button className="fa fa-arrow-up"></button> 5
+            <button className="fa fa-arrow-down"></button>
           </div>
         </div>
         <div id="session"> Session Length
-          <div class="input">
-            <button class="fa fa-arrow-up"></button> 25
-            <button class="fa fa-arrow-down"></button>
+          <div className="input">
+            <button className="fa fa-arrow-up"></button> 25
+            <button className="fa fa-arrow-down"></button>
           </div>
         </div>
       </div>
       <div id="clock"> Session
         <div id="time"> 25:00 </div>
         </div>
-      <div class="controls">
-        <button class="fa fa-play"></button>
-        <button class="fa fa-pause"></button>
-        <button class="fa fa-refresh"></button>
+      <div className="controls">
+        <button className="fa fa-play"></button>
+        <button className="fa fa-pause"></button>
+        <button className="fa fa-refresh"></button>
         </div>
          </div>
 
