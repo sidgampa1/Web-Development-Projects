@@ -17,6 +17,7 @@ class Clock extends React.Component {
 
     this.reset=this.reset.bind(this);
     this.play=this.play.bind(this);
+    this.pause=this.pause.bind(this);
   //  this.start=this.start.bind(this);
   }
 
@@ -28,7 +29,8 @@ class Clock extends React.Component {
             session={this.state.session} incSess={this.incSess} decSess={this.decSess}/>
       <Display minutes={this.state.minutes} seconds={this.state.seconds}
             reset={this.reset}
-            play={this.play}/>
+            play={this.play}
+            pause={this.pause}/>
          </div>
 
     )
@@ -83,6 +85,11 @@ class Clock extends React.Component {
   }
 
   reset() {
+    // don't do anything if clock is ticking
+    if (this.state.clockActive) {
+      return
+    }
+
     this.setState({
       seconds: "00",
       minutes: "25",
@@ -93,8 +100,13 @@ class Clock extends React.Component {
   }
 
   play() {
+    // don't do anything if clock is already ticking
+    if (this.state.clockActive) {
+      return
+    }
     // start clock
-    var id=setInterval(tick, 1000)
+    var id=setInterval(this.tick, 1000)
+    // clearInterval(id)
     // store id for later pausing
     this.setState({
       clockID: id,
@@ -102,63 +114,94 @@ class Clock extends React.Component {
     })
   }
 
+  pause() {
+    if (!this.state.clockActive) {
+      return
+    }
+
+    clearInterval(this.state.clockID)
+
+    this.setState({
+      clockID: "",
+      clockActive: false
+    }
+    )
+  }
+
+// test() {
+//   alert("Hello test is working.")
+//   this.test2()
+// }
+//
+// test2() {
+//   alert("test2 is working")
+// }
+
+
   tick() {
    //TODO update time
     if ((this.state.seconds == 0)&&(this.state.minutes == 0)) {
       // reset clock and start next round
-      startNextRound()
+      this.startNextRound()
     }
     else if (this.state.seconds == 0) {
       // decrement minute by 1
-      decrementMinute()
+      this.decrementMinute()
     }
     else {
       // decrement seconds by 1
-      decrementSecond()
+      this.decrementSecond()
     }
   }
 
   startNextRound() {
     if (this.state.isSession) {
-      startBreak()
+      this.startBreak()
     }
     else {
-      startSession()
+      this.startSession()
     }
   }
 
   startBreak() {
+    var min = this.formatNum(this.state.break)
+    var sec = this.formatNum(0)
     this.setState({
-      minutes: formatNum(this.state.break),
-      seconds: formatNum(0),
+      minutes: min,
+      seconds: sec,
       isSession: false
     })
   }
 
   startSession() {
+    var min = this.formatNum(this.state.session)
+    var sec = this.formatNum(0)
     this.setState({
-      minutes: formatNum(this.state.session),
-      seconds: formatNum(0),
+      minutes: min,
+      seconds: sec,
       isSession: true
     })
   }
 
   decrementMinute() {
+    var min = this.formatNum(this.state.minutes-1)
+    var sec = this.formatNum(59)
     this.setState({
-      minutes:formatNum(this.state.minutes-1),
-      seconds:formatNum(0)
+      minutes: min,
+      seconds: sec
     })
 
   }
 
   decrementSecond() {
+    var sec = this.getNextSecond()
     this.setState({
-      seconds:getNextSecond()
+      seconds: sec
     })
   }
 
   getNextSecond() {
-    return this.state.seconds == 0 ? 59 : formatNum(this.state.seconds - 1)
+    return this.state.seconds == 0 ? 59 : this.formatNum(this.state.seconds - 1)
   }
 
   formatNum(num) {
@@ -208,7 +251,7 @@ class Display extends React.Component {
         </div>
       <div className="controls">
         <button className="fa fa-play" onClick={this.props.play}></button>
-        <button className="fa fa-pause"></button>
+        <button className="fa fa-pause" onClick={this.props.pause}></button>
         <button className="fa fa-refresh" onClick={this.props.reset}></button>
         </div>
         </div>
