@@ -18,7 +18,8 @@ class Clock extends React.Component {
     this.reset=this.reset.bind(this);
     this.play=this.play.bind(this);
     this.pause=this.pause.bind(this);
-  //  this.start=this.start.bind(this);
+    this.tick=this.tick.bind(this);
+
   }
 
   render() {
@@ -41,11 +42,17 @@ class Clock extends React.Component {
     if (this.state.clockActive) {
       return
     }
-    //ncrease break by 1
-    this.setState ({
-      break: this.state.break + 1
-    })
+    var brk=this.state.break+1
+    //TODO only change clock if current clock is on break
+    // var min=this.formatNum(brk)
+    // var sec=this.formatNum(0)
 
+    //increase break by 1
+    this.setState({
+      break: brk,
+      // minutes: min,
+      // seconds: sec,
+    })
   }
 
   decBreak() {
@@ -55,9 +62,14 @@ class Clock extends React.Component {
       return
     }
 
+    var brk=this.state.break-1
+    // var min=this.formatNum(brk)
+    // var sec=this.formatNum(0)
     //decrease break by 1
     this.setState( {
-      break: this.state.break - 1
+      break: brk,
+      // minutes: min,
+      // seconds: sec,
     })
   }
 
@@ -66,9 +78,14 @@ class Clock extends React.Component {
     if (this.state.clockActive) {
       return
     }
+    var sess=this.state.session + 1
+    var min=this.formatNum(sess)
+    var sec=this.formatNum(0)
     //ncrease session by 1
     this.setState ({
-      session: this.state.session + 1
+      session: sess,
+      minutes: min,
+      seconds: sec
     })
   }
 
@@ -78,9 +95,14 @@ class Clock extends React.Component {
     if ((this.state.session===1)||(this.state.clockActive)) {
       return
     }
+    var sess=this.state.session - 1
+    var min=this.formatNum(sess)
+    var sec=this.formatNum(0)
   //decrease session by 1
     this.setState( {
-      session: this.state.session - 1
+      session: sess,
+      minutes: min,
+      seconds: sec
     })
   }
 
@@ -100,11 +122,14 @@ class Clock extends React.Component {
   }
 
   play() {
+  //  alert("is this working?")
     // don't do anything if clock is already ticking
     if (this.state.clockActive) {
+    //  alert("clock is active")
       return
     }
     // start clock
+  //  alert("about to set interval")
     var id=setInterval(this.tick, 1000)
     // clearInterval(id)
     // store id for later pausing
@@ -119,6 +144,7 @@ class Clock extends React.Component {
       return
     }
 
+    //stop the clock
     clearInterval(this.state.clockID)
 
     this.setState({
@@ -139,12 +165,14 @@ class Clock extends React.Component {
 
 
   tick() {
+  //  alert(this.state.seconds)
    //TODO update time
     if ((this.state.seconds == 0)&&(this.state.minutes == 0)) {
       // reset clock and start next round
       this.startNextRound()
     }
     else if (this.state.seconds == 0) {
+      // alert("Decrementing minute")
       // decrement minute by 1
       this.decrementMinute()
     }
