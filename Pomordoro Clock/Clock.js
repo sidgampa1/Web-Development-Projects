@@ -8,7 +8,8 @@ class Clock extends React.Component {
       session: 25,
       clockActive: false,
       isSession: true,
-      clockID: ""
+      clockID: "",
+      name: "Session"
     }
     this.incBreak=this.incBreak.bind(this);
     this.decBreak=this.decBreak.bind(this);
@@ -28,7 +29,7 @@ class Clock extends React.Component {
       <div id="title"> Pomodoro Clock </div>
       <Params break={this.state.break} incBreak={this.incBreak} decBreak={this.decBreak}
             session={this.state.session} incSess={this.incSess} decSess={this.decSess}/>
-      <Display minutes={this.state.minutes} seconds={this.state.seconds}
+      <Display minutes={this.state.minutes} seconds={this.state.seconds} name={this.state.name}
             reset={this.reset}
             play={this.play}
             pause={this.pause}/>
@@ -37,50 +38,74 @@ class Clock extends React.Component {
     )
   }
 
+  checkSess(sess) {
+    return this.state.isSession ? [this.formatNum(sess),this.formatNum(0)] : [this.formatNum(this.state.minutes),this.formatNum(this.state.seconds)]
+  }
+
+  checkBrk(brk) {
+    // alert("checking brk")
+    return !(this.state.isSession) ? [this.formatNum(brk),this.formatNum(0)] : [this.formatNum(this.state.minutes),this.formatNum(this.state.seconds)]
+  }
+
   incBreak() {
     //quit if clock is active
+    var brk,vals,min,sec
     if (this.state.clockActive) {
       return
     }
-    var brk=this.state.break+1
-    //TODO only change clock if current clock is on break
-    // var min=this.formatNum(brk)
-    // var sec=this.formatNum(0)
+
+    brk=this.state.break+1
+
+    //only change min and sec if clock is on break
+    vals=this.checkBrk(brk)
+    min=vals[0]
+    sec=vals[1]
 
     //increase break by 1
     this.setState({
       break: brk,
-      // minutes: min,
-      // seconds: sec,
+      minutes: min,
+      seconds: sec,
     })
   }
 
   decBreak() {
+    var brk,vals,min,sec
     //quit if break is already at the lowest (1 min)
     //quit if clock is active
     if ((this.state.break===1)||(this.state.clockActive)) {
       return
     }
 
-    var brk=this.state.break-1
-    // var min=this.formatNum(brk)
-    // var sec=this.formatNum(0)
+    brk=this.state.break-1
+
+    //only change min and sec if clock is on break
+    vals=this.checkBrk(brk)
+    min=vals[0]
+    sec=vals[1]
+
     //decrease break by 1
     this.setState( {
       break: brk,
-      // minutes: min,
-      // seconds: sec,
+      minutes: min,
+      seconds: sec,
     })
   }
 
   incSess() {
+    var sess,vals,min,sec
     //quit if clock is active
     if (this.state.clockActive) {
       return
     }
-    var sess=this.state.session + 1
-    var min=this.formatNum(sess)
-    var sec=this.formatNum(0)
+
+    sess=this.state.session + 1
+
+    //only change min and sec if clock is on session
+    vals=this.checkSess(sess)
+    min=vals[0]
+    sec=vals[1]
+
     //ncrease session by 1
     this.setState ({
       session: sess,
@@ -90,14 +115,20 @@ class Clock extends React.Component {
   }
 
   decSess() {
+    var sess,vals,min,sec
+
     //quit if session is already at the lowest (1 min)
     //quit if clock is active
     if ((this.state.session===1)||(this.state.clockActive)) {
       return
     }
     var sess=this.state.session - 1
-    var min=this.formatNum(sess)
-    var sec=this.formatNum(0)
+
+    //only change min and sec if clock is on session
+    vals=this.checkSess(sess)
+    min=vals[0]
+    sec=vals[1]
+
   //decrease session by 1
     this.setState( {
       session: sess,
@@ -117,7 +148,9 @@ class Clock extends React.Component {
       minutes: "25",
       break: 5,
       session: 25,
-      clockActive: false
+      clockActive: false,
+      isSession: true,
+      name: "Session"
     })
   }
 
@@ -197,7 +230,8 @@ class Clock extends React.Component {
     this.setState({
       minutes: min,
       seconds: sec,
-      isSession: false
+      isSession: false,
+      name:"Break"
     })
   }
 
@@ -207,7 +241,8 @@ class Clock extends React.Component {
     this.setState({
       minutes: min,
       seconds: sec,
-      isSession: true
+      isSession: true,
+      name: "Session"
     })
   }
 
@@ -233,7 +268,7 @@ class Clock extends React.Component {
   }
 
   formatNum(num) {
-    if (num < 10) {
+    if (num < 10 & num.toString().length!=2) {
       num="0"+num;
     }
     return num
@@ -274,7 +309,7 @@ class Display extends React.Component {
   render() {
     return (
       <div>
-      <div id="clock"> Session
+      <div id="clock"> {this.props.name}
         <div id="time"> {this.props.minutes}:{this.props.seconds} </div>
         </div>
       <div className="controls">
