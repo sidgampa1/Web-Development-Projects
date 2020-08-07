@@ -142,7 +142,7 @@ class Clock extends React.Component {
     if (this.state.clockActive) {
       return
     }
-
+    document.body.style.backgroundColor = "#222073"
     this.setState({
       seconds: "00",
       minutes: "25",
@@ -227,6 +227,7 @@ class Clock extends React.Component {
   startBreak() {
     var min = this.formatNum(this.state.break)
     var sec = this.formatNum(0)
+    document.body.style.backgroundColor = "green"
     this.setState({
       minutes: min,
       seconds: sec,
@@ -238,6 +239,7 @@ class Clock extends React.Component {
   startSession() {
     var min = this.formatNum(this.state.session)
     var sec = this.formatNum(0)
+    document.body.style.backgroundColor = "#222073"
     this.setState({
       minutes: min,
       seconds: sec,
