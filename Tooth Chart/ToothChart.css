@@ -11,6 +11,8 @@ input {
   border: 1px solid #32cade;
   box-sizing: border-box;
   text-align: center;
+  -webkit-appearance: none;
+  outline: none;
 }
 
 .grid {
@@ -18,9 +20,28 @@ input {
   grid-template-columns: repeat(17, 1fr);
   background-color: white;
   color: black;
-  border: 3px solid #3a32de;
+  border: 3px solid #53b8c5;
+  align-items: stretch;
+
 }
 
 #submit {
-  border: none;
+
+  background-color: #53b8c5;
+  outline: black;
+}
+
+.name {
+  text-align: center;
+  border: 1px solid #32cade;
+}
+
+.labels {
+  font-size: 16.9px;
+}
+
+input::-webkit-inner-spin-button {
+    /* display: none; <- Crashes Chrome on hover */
+    -webkit-appearance: none;
+    margin: 0; /* <-- Apparently some margin are still there even though it's hidden */
 }
