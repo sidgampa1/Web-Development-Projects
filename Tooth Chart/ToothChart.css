@@ -3,15 +3,24 @@ body {
 }
 
 form {
-  background-color: white;
-  display: grid;
-  grid-template-columns: repeat(17, 1fr);
-  color: black;
-  border: 1px solid black;
+
 }
 
 input {
   width: 100%;
-  border: 2px solid gold;
+  border: 1px solid #32cade;
   box-sizing: border-box;
+  text-align: center;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(17, 1fr);
+  background-color: white;
+  color: black;
+  border: 3px solid #3a32de;
+}
+
+#submit {
+  border: none;
 }
