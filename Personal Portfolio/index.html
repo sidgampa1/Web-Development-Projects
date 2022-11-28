@@ -9,30 +9,31 @@
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
   </head>
-  <body>
+  <body class="main-content">
+    <header class="section sec1 header active"></header>
+    <main>
+      <section class="section sec2 about"></section>
+      <section class="section sec3 portfolio"></section>
+      <section class="section sec4 blogs"></section>
+      <section class="section sec5 contact"></section>
+    </main>
+    <div class="controls">
+      <div class="control control-1 active-btn" >
+        <i class="fa fa-solid fa-home"></i>
+      </div>
+      <div class="control control-2" data-id="about">
+        <i class="fa fa-solid fa-user"></i>
+      </div>
+      <div class="control control-3" data-id="portfolio">
+        <i class="fa fa-solid fa-briefcase"></i>
+      </div>
+      <div class="control control-4" data-id="blogs">
+        <i class="fa fa-solid fa-newspaper"></i>
+      </div>
+      <div class="control control-5x" data-id="contact">
+        <i class="fa fa-thin fa-envelope-open"></i>
+      </div>
+    </div>
+    <script src='app.js'></script>
   </body>
-  <header class="section sec1 header active"></header>
-  <main>
-    <section class="section sec2 about"></section>
-    <section class="section sec3 portfolio"></section>
-    <section class="section sec4 blogs"></section>
-    <section class="section sec5 contact"></section>
-  </main>
-  <div class="controls">
-    <div class="control control-1 active-btn" data-id="header">
-      <i class="fa-solid fa-house"></i>
-    </div>
-    <div class="control control-2 active-btn" data-id="about">
-      <i class="fa-solid fa-user"></i>
-    </div>
-    <div class="control control-3 active-btn" data-id="portfolio">
-      <i class="fa-solid fa-briefcase"></i>
-    </div>
-    <div class="control control-4 active-btn" data-id="blogs">
-      <i class="fa-solid fa-newspaper"></i>
-    </div>
-    <div class="control control-5 active-btn" data-id="contact">
-      <i class="fa-thin fa-envelope-open"></i>
-    </div>
-  </div>
 </html>
