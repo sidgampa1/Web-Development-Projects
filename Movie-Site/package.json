@@ -1,0 +1,24 @@
+{
+  "name": "movie-site",
+  "version": "1.0.0",
+  "description": "Node.js Movie Review Site",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "type": "module",
+  "keywords": [
+    "movie",
+    "site",
+    "reviews"
+  ],
+  "author": "Sid Gampa",
+  "license": "ISC",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.3",
+    "express": "^4.18.2",
+    "mongodb": "^5.5.0",
+    "nodemon": "^2.0.22"
+  }
+}

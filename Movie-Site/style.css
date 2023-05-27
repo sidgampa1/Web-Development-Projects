@@ -67,5 +67,9 @@ input {
     padding: 15px;
     text-align: center;
     background-color: #151f30;
-   
+
+}
+
+.card :hover {
+    transform: scale(1.1);
 }
