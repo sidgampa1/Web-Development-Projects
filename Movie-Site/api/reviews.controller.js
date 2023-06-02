@@ -11,8 +11,8 @@ export default class ReviewsController {
 
         const reviewResponse = await ReviewsDAO.addReview(
             movieId,
-            user,
-            review
+            review,
+            user
         );
         res.json({status:"success"});
         }
