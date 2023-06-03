@@ -5,7 +5,7 @@ export default class ReviewsController {
        try {
         console.log("Posting new review");
         console.log(req.body);
-        const movieId = req.body.movieId;
+        const movieId = parseInt(req.body.movieID);
         const review = req.body.review;
         const user = req.body.user;
 
@@ -25,6 +25,8 @@ export default class ReviewsController {
     static async apiGetReview(req, res, next) {
         try {
             let id = req.params.id || {};
+            console.log("Getting review");
+            console.log(id);
             let review = await ReviewsDAO.getReview(id);
             if (!review) {
                 res.status(400).json({error: "Not Found"});
@@ -43,6 +45,8 @@ export default class ReviewsController {
         const id = req.params.id;
         const review = req.body.review;
         const user = req.body.user;
+
+        console.log("Updating review ", id);
 
         let reviewResponse = await ReviewsDAO.updateReview(
             id,
@@ -79,6 +83,7 @@ export default class ReviewsController {
     static async apiGetReviews(req, res, next) {
         try {
         let id = req.params.id || {};
+        console.log("Getting movie reviews by ID ", id);
         let reviews = await ReviewsDAO.getReviewsByMovieID(id);
 
         if (!reviews) {

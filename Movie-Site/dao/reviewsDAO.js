@@ -1,5 +1,5 @@
 import mongodb from 'mongodb'
-const ObjectId = mongodb.ObjectID
+// const ObjectId = mongodb.ObjectID
 
 global.reviewsColl;
 export default class reviewsDAO {
@@ -41,7 +41,8 @@ export default class reviewsDAO {
 
     static async getReview(reviewID) {
         try {
-            return await reviewsColl.findOne({_id: ObjectId(reviewID) });
+            const ObjectId = new mongodb.ObjectId(reviewID) 
+            return await reviewsColl.findOne({_id: ObjectId });
         } catch (e) {
             console.error(`Unable to get review: ${e}`);
             return {error: e};
@@ -50,7 +51,8 @@ export default class reviewsDAO {
 
     static async updateReview(reviewID, user, review) {
         try {
-            const response = reviewsColl.updateOne({_id: ObjectId(reviewID)},
+            const ObjectId = new mongodb.ObjectId(reviewID) 
+            const response = reviewsColl.updateOne({_id: ObjectId},
             {$set : {user: user, review: review}});
 
             return response;
@@ -62,16 +64,18 @@ export default class reviewsDAO {
 
     static async deleteReview(reviewID) {
         try {
-            return await reviewsColl.deleteOne({_id: ObjectId(reviewID) });
+            const ObjectId = new mongodb.ObjectId(reviewID) 
+            return await reviewsColl.deleteOne({_id: ObjectId });
         } catch (e) {
             console.error(`Unable to delete review: ${e}`);
             return {error: e};
         }
     }
 
-    static async getReviewsByMovieId(movieId) {
+    static async getReviewsByMovieID(movieId) {
         try{
-        const resp = await reviewsColl.find({movieId : parseInt(movieId)});
+            
+        const resp = await reviewsColl.find({movieID : parseInt(movieId)});
         return resp.toArray();
         } catch (e) {
             console.error(`Unable to get reviews: ${e}`);
