@@ -1,4 +1,4 @@
-const APILINK = 'http://localhost:8000/api/v1/reviews/'
+const APILINK = process.env.MOVIE_REVIEWS_LINK
 
 const main = document.getElementById("section");
 
