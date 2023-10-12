@@ -1,4 +1,7 @@
-const APILINK = process.env.MOVIE_REVIEWS_LINK
+import dotenv from "dotenv"
+
+dotenv.config();
+const APILINK = process.env.MOVIE_REVIEWS_LINK;
 
 const main = document.getElementById("section");
 
