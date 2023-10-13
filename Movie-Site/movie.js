@@ -1,7 +1,4 @@
-import dotenv from "dotenv"
-
-dotenv.config();
-const APILINK = process.env.MOVIE_REVIEWS_LINK;
+const APILINK = "https://movie-reviews-8yv.pages.dev/api/v1/reviews";
 
 const main = document.getElementById("section");
 
