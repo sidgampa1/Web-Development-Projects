@@ -101,7 +101,7 @@ async function saveReview(reviewID, userID, id="") {
         data.movieID = movieID
     }
 
-    const url = APILINK + id;
+    const url = APILINK + "/" + id;
 
     const response = await fetch(url, {
         method: method,
@@ -134,7 +134,7 @@ async function updateReview(review, user, id) {
 }
 
 async function deleteReview(id) {
-    const response = await fetch(APILINK + id, {
+    const response = await fetch(APILINK + "/" + id, {
         method: "DELETE"
     }).then(res => res.json()).then(data => {
         console.log(data);
