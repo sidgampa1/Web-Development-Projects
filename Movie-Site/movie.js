@@ -1,4 +1,4 @@
-const APILINK = "https://movie-reviews-8yv.pages.dev/api/v1/reviews";
+const APILINK = "https://web-development-projects-umber.vercel.app";
 
 const main = document.getElementById("section");
 
