@@ -228,8 +228,8 @@ section {
 }
 
 .about-container {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  /* display: grid;
+  grid-template-columns: repeat(2, 1fr); */
   padding-top: 3.5rem;
   padding-bottom: 5rem;
 }
