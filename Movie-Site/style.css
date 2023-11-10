@@ -1,3 +1,4 @@
+
 * {
     box-sizing: border-box;
     color: white;
@@ -70,4 +71,4 @@ input {
 .card :hover {
     cursor: pointer;
     /* transform: scale(1.1); */
-}
+} 
