@@ -1,5 +1,5 @@
 import dotenv from "dotenv"
-import app from "./server.js"
+import app from "./api/server.js"
 import { MongoClient, ServerApiVersion } from 'mongodb'
 import reviewsDAO from "./dao/reviewsDAO.js"
 
