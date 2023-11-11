@@ -1,4 +1,4 @@
-const APILINK = "https://web-development-projects-git-master-sid-gampas-projects.vercel.app";
+const APILINK = "https://movie-server-n9k8.onrender.com";
 
 const main = document.getElementById("section");
 
