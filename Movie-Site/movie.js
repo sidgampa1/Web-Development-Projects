@@ -1,4 +1,4 @@
-const APILINK = "https://movie-server-n9k8.onrender.com";
+const APILINK = "https://movie-server-n9k8.onrender.com/api/v1/reviews";
 
 const main = document.getElementById("section");
 
