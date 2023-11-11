@@ -54,6 +54,10 @@ input {
     border-radius: 19px;
 }
 
+#title {
+    font: 15px system-ui;
+}
+
 .column {
     float: left;
     width: 25%;
